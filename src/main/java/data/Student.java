@@ -5,16 +5,28 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "student")
 public class Student implements Serializable {
 
     @Id
+    @Getter
+    @Setter
     private int id;
+    @Getter
+    @Setter
     private String fio;
+    @Getter
+    @Setter
     private String groupID;
+    @Getter
+    @Setter
     private String mail;
+    @Getter
+    @Setter
     private String phone;
 
     public Student() {
@@ -25,46 +37,6 @@ public class Student implements Serializable {
         this.fio = fio;
         this.groupID = groupID;
         this.mail = mail;
-        this.phone = phone;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFio() {
-        return fio;
-    }
-
-    public void setFio(String fio) {
-        this.fio = fio;
-    }
-
-    public String getGroupID() {
-        return groupID;
-    }
-
-    public void setGroupID(String groupID) {
-        this.groupID = groupID;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
         this.phone = phone;
     }
 
