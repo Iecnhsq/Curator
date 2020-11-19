@@ -1,11 +1,11 @@
 package main;
 
-import view.Start;
+import view.LoginFrame;
 
 public class Main {
 
     public static void main(String[] args) {
-        new Start().setVisible(true);
+        new LoginFrame().setVisible(true);
     }
 
 }
