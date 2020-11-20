@@ -95,7 +95,7 @@ public class LoginFrame extends JFrame {
                     label3.setForeground(Color.red);
                     label3.setText("Somesing went wrong...");
                 } else {
-                    new Main().setVisible(true);
+                    new MainFrame().setVisible(true);
                     this.dispose();
                 }
             }
