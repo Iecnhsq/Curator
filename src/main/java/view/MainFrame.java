@@ -8,7 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.apache.log4j.Logger;
@@ -125,7 +124,7 @@ public class MainFrame extends JFrame {
         DefaultTableModel model = new DefaultTableModel(data, columns) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false;
+                return true;
             }
 
             @Override
@@ -135,7 +134,7 @@ public class MainFrame extends JFrame {
         };
 
         table = new JTable(model);
-        // http://java-online.ru/swing-jtable.xhtml
+
         table.setBounds(10, 60, 668, 300);
         panel.add(table);
 
