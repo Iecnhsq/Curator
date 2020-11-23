@@ -3,7 +3,6 @@ package view;
 import data.Master;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -58,11 +57,8 @@ public class LoginFrame extends JFrame {
         panel.add(text2);
 
         button.setBounds(10, 90, 254, 25);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                btnAct(e);
-            }
+        button.addActionListener((ActionEvent e) -> {
+            btnAct(e);
         });
         panel.add(button);
 

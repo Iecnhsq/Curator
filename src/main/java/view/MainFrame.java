@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JButton;
@@ -57,47 +56,32 @@ public class MainFrame extends JFrame {
         panel.add(label2);
 
         button1.setBounds(100, 20, 100, 30);
-        button1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                btnAct1(e);
-            }
+        button1.addActionListener((ActionEvent e) -> {
+            btnAct1(e);
         });
         panel.add(button1);
 
         button2.setBounds(210, 20, 125, 30);
-        button2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                btnAct2(e);
-            }
+        button2.addActionListener((ActionEvent e) -> {
+            btnAct2(e);
         });
         panel.add(button2);
 
         button3.setBounds(345, 20, 80, 30);
-        button3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                btnAct3(e);
-            }
+        button3.addActionListener((ActionEvent e) -> {
+            btnAct3(e);
         });
         panel.add(button3);
 
         button4.setBounds(435, 20, 110, 30);
-        button4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                btnAct4(e);
-            }
+        button4.addActionListener((ActionEvent e) -> {
+            btnAct4(e);
         });
         panel.add(button4);
 
         button5.setBounds(555, 20, 125, 30);
-        button5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                btnAct5(e);
-            }
+        button5.addActionListener((ActionEvent e) -> {
+            btnAct5(e);
         });
         panel.add(button5);
 
