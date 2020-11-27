@@ -32,8 +32,8 @@ public class LoginFrame extends JFrame {
         label1 = new JLabel("Login");
         label2 = new JLabel("Password");
         label3 = new JLabel();
-        text1 = new JTextField(10);
-        text2 = new JTextField(10);
+        text1 = new JTextField(25);
+        text2 = new JTextField(25);
         button = new JButton("Access");
         panel = new JPanel();
 
