@@ -18,6 +18,9 @@ public class User implements Serializable {
     private int id;
     @Getter
     @Setter
+    private String fio;
+    @Getter
+    @Setter
     private String login;
     @Getter
     @Setter
@@ -28,26 +31,33 @@ public class User implements Serializable {
     @Getter
     @Setter
     private String phone;
+    @Getter
+    @Setter
+    private String group_u;
 
     public User() {
     }
 
-    public User(int id, String login, String password, String mail, String phone) {
+    public User(int id, String fio, String login, String password, String mail, String phone, String group) {
         this.id = id;
+        this.fio = fio;
         this.login = login;
         this.password = password;
         this.mail = mail;
         this.phone = phone;
+        this.group_u = group;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 41 * hash + this.id;
-        hash = 41 * hash + Objects.hashCode(this.login);
-        hash = 41 * hash + Objects.hashCode(this.password);
-        hash = 41 * hash + Objects.hashCode(this.mail);
-        hash = 41 * hash + Objects.hashCode(this.phone);
+        int hash = 7;
+        hash = 37 * hash + this.id;
+        hash = 37 * hash + Objects.hashCode(this.fio);
+        hash = 37 * hash + Objects.hashCode(this.login);
+        hash = 37 * hash + Objects.hashCode(this.password);
+        hash = 37 * hash + Objects.hashCode(this.mail);
+        hash = 37 * hash + Objects.hashCode(this.phone);
+        hash = 37 * hash + Objects.hashCode(this.group_u);
         return hash;
     }
 
@@ -66,6 +76,9 @@ public class User implements Serializable {
         if (this.id != other.id) {
             return false;
         }
+        if (!Objects.equals(this.fio, other.fio)) {
+            return false;
+        }
         if (!Objects.equals(this.login, other.login)) {
             return false;
         }
@@ -75,7 +88,10 @@ public class User implements Serializable {
         if (!Objects.equals(this.mail, other.mail)) {
             return false;
         }
-        return Objects.equals(this.phone, other.phone);
+        if (!Objects.equals(this.phone, other.phone)) {
+            return false;
+        }
+        return Objects.equals(this.group_u, other.group_u);
     }
 
 }
