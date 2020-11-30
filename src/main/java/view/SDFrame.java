@@ -3,11 +3,11 @@ package view;
 import javax.swing.JFrame;
 import org.apache.log4j.Logger;
 
-public class D_SFrame extends JFrame {
+public class SDFrame extends JFrame {
 
-    private static final Logger LOGGER = Logger.getLogger(D_SFrame.class);
+    private static final Logger LOGGER = Logger.getLogger(SDFrame.class);
 
-    public D_SFrame() {
+    public SDFrame() {
         getForm();
     }
 
