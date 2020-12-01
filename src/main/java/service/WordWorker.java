@@ -23,53 +23,64 @@ public class WordWorker {
     }
 
     private void getWW() throws FileNotFoundException, IOException {
-        // создаем модель docx документа,
-        // к которой будем прикручивать наполнение (колонтитулы, текст)
         XWPFDocument docxModel = new XWPFDocument();
         CTSectPr ctSectPr = docxModel.getDocument().getBody().addNewSectPr();
-        // получаем экземпляр XWPFHeaderFooterPolicy для работы с колонтитулами
         XWPFHeaderFooterPolicy headerFooterPolicy = new XWPFHeaderFooterPolicy(docxModel, ctSectPr);
-        // создаем верхний колонтитул Word файла
         CTP ctpHeaderModel = createHeaderModel(
-                "Верхний колонтитул - создано с помощью Apache POI на Java :)"
+                "ДВНЗ КМТК 01.12.2020"
         );
-        // устанавливаем сформированный верхний
-        // колонтитул в модель документа Word
         XWPFParagraph headerParagraph = new XWPFParagraph(ctpHeaderModel, docxModel);
         headerFooterPolicy.createHeader(
                 XWPFHeaderFooterPolicy.DEFAULT,
                 new XWPFParagraph[]{headerParagraph}
         );
-        // создаем нижний колонтитул docx файла
-        CTP ctpFooterModel = createFooterModel("Просто нижний колонтитул");
-        // устанавливаем сформированый нижний
-        // колонтитул в модель документа Word
+        CTP ctpFooterModel = createFooterModel("Сформовано автоматично");
         XWPFParagraph footerParagraph = new XWPFParagraph(ctpFooterModel, docxModel);
         headerFooterPolicy.createFooter(
                 XWPFHeaderFooterPolicy.DEFAULT,
                 new XWPFParagraph[]{footerParagraph}
         );
-        // создаем обычный параграф, который будет расположен слева,
-        // будет синим курсивом со шрифтом 25 размера
         XWPFParagraph bodyParagraph = docxModel.createParagraph();
-        bodyParagraph.setAlignment(ParagraphAlignment.RIGHT);
+        bodyParagraph.setAlignment(ParagraphAlignment.CENTER);
         XWPFRun paragraphConfig = bodyParagraph.createRun();
-        paragraphConfig.setItalic(true);
-        paragraphConfig.setFontSize(25);
-        // HEX цвет без решетки #
-        paragraphConfig.setColor("06357a");
-        paragraphConfig.setText(
-                "Prologistic.com.ua - новые статьи по Java и Android каждую неделю. Подписывайтесь!"
-        );
-        try ( // сохраняем модель docx документа в файл
-                 FileOutputStream outputStream = new FileOutputStream("D:/Apache POI Word Test.docx")) {
+        paragraphConfig.setBold(true);
+        paragraphConfig.setFontFamily("Times New Roman");
+        paragraphConfig.setFontSize(16);
+        paragraphConfig.setText("Державний вищий навчальний заклад");
+        paragraphConfig.addBreak();
+        paragraphConfig.setText("'Київський механіко-технологічний коледж'");
+        paragraphConfig.addBreak();
+        paragraphConfig.setText(" "); // 2 пробела!!!!!
+        paragraphConfig.addBreak();
+        paragraphConfig.setText("Шановні батьки!");
+        paragraphConfig.addBreak();
+
+        XWPFParagraph bodyParagraph1 = docxModel.createParagraph();
+        bodyParagraph1.setAlignment(ParagraphAlignment.BOTH);
+        XWPFRun paragraphConfig1 = bodyParagraph1.createRun();
+        paragraphConfig1.setFontFamily("Times New Roman");
+        paragraphConfig1.setFontSize(14);
+        paragraphConfig1.setText("   Адміністрація ДВНЗ 'Київський механіко-технологічний коледж' доводить до Вашого відома те,"
+                + " що Ваш син, студент групи () ТРЗВ - 17/1 () Панчик Богдан Романович за резкльтатами атестації"
+                + " за () лютий місяць має () 47 годин пропусків занять без поважних причин та незадовільні оцінки з"
+                + " наступних предметів/дисциплін:");
+
+        XWPFParagraph bodyParagraph2 = docxModel.createParagraph();
+        bodyParagraph2.setAlignment(ParagraphAlignment.BOTH);
+        XWPFRun paragraphConfig2 = bodyParagraph2.createRun();
+        paragraphConfig2.setFontFamily("Times New Roman");
+        paragraphConfig2.setFontSize(14);
+        paragraphConfig2.setBold(true);
+        paragraphConfig2.setText("1. () ... - () н/а");
+
+        try (
+                 FileOutputStream outputStream = new FileOutputStream("D:/Лист.docx")) {
             docxModel.write(outputStream);
         }
         LOGGER.info("Успешно записан в файл");
     }
 
     private static CTP createFooterModel(String footerContent) {
-        // создаем футер или нижний колонтитул
         CTP ctpFooterModel = CTP.Factory.newInstance();
         CTR ctrFooterModel = ctpFooterModel.addNewR();
         CTText cttFooter = ctrFooterModel.addNewT();
@@ -78,7 +89,6 @@ public class WordWorker {
     }
 
     private static CTP createHeaderModel(String headerContent) {
-        // создаем хедер или верхний колонтитул
         CTP ctpHeaderModel = CTP.Factory.newInstance();
         CTR ctrHeaderModel = ctpHeaderModel.addNewR();
         CTText cttHeader = ctrHeaderModel.addNewT();
