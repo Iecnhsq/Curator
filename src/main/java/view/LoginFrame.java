@@ -1,7 +1,5 @@
 package view;
 
-import data.UDAO;
-import data.User;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -10,11 +8,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import org.apache.log4j.Logger;
+import service.ServiceImpl;
 
 public class LoginFrame extends JFrame {
 
     private static final Logger LOGGER = Logger.getLogger(LoginFrame.class);
-    private final UDAO udao = new UDAO();
+    private final ServiceImpl src = new ServiceImpl();
     private JLabel label1, label2, label3;
     private JTextField text1, text2;
     private JButton button;
@@ -80,37 +79,24 @@ public class LoginFrame extends JFrame {
             label3.setForeground(Color.red);
             label3.setText("Somesing went wrong...");
         } else {
-            if (isLogin(login) == null) {
+            if (src.isLogin(login) == null) {
                 LOGGER.info("Get login: " + login);
                 LOGGER.info("Get password: " + password);
                 label3.setForeground(Color.red);
                 label3.setText("Somesing went wrong...");
             } else {
-                if (!isPass(login).equals(password)) {
+                if (!src.isPass(login).equals(password)) {
                     LOGGER.info("Get login: " + login);
                     LOGGER.info("Get password: " + password);
                     label3.setForeground(Color.red);
                     label3.setText("Somesing went wrong...");
                 } else {
+                    // login holder!!!!!
                     new AccountFrame().setVisible(true);
                     this.dispose();
                 }
             }
         }
-    }
-
-    private User isLogin(String login) {
-        User u;
-        u = udao.getUserByLogin(login);
-        return u;
-    }
-
-    private String isPass(String login) {
-        User u;
-        u = udao.getUserByLogin(login);
-        String s;
-        s = u.getPassword();
-        return s;
     }
 
 }

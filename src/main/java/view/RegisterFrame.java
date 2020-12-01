@@ -1,7 +1,5 @@
 package view;
 
-import data.UDAO;
-import data.User;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -11,11 +9,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 import org.apache.log4j.Logger;
+import service.ServiceImpl;
 
 public class RegisterFrame extends JFrame {
 
     private static final Logger LOGGER = Logger.getLogger(RegisterFrame.class);
-    private final UDAO udao = new UDAO();
+    private final ServiceImpl src = new ServiceImpl();
     private JLabel label1, label2, label3, label4, label5;
     private JTextField text1, text2, text3, text4;
     private JButton button;
@@ -94,7 +93,7 @@ public class RegisterFrame extends JFrame {
         pass = String.valueOf(text2.getText());
         confirmpass = String.valueOf(text3.getText());
         mail = String.valueOf(text4.getText());
-        if (login.isEmpty() || isLogin(login) != null || login.length() < 5) {
+        if (login.isEmpty() || src.isLogin(login) != null || login.length() < 5) {
             LOGGER.info(e);
             LOGGER.info("Login = " + login);
             label5.setForeground(Color.red);
@@ -105,28 +104,17 @@ public class RegisterFrame extends JFrame {
                 label5.setForeground(Color.red);
                 label5.setText("Somesing went wrong...");
             } else {
-                if (mail.isEmpty() || isMail(mail) != null) {
+                if (mail.isEmpty() || src.isMail(mail) != null) {
                     LOGGER.info("Mail = " + mail);
                     label5.setForeground(Color.red);
                     label5.setText("Somesing went wrong...");
                 } else {
+                    // create User
                     new AccountFrame().setVisible(true);
                     this.dispose();
                 }
             }
         }
-    }
-
-    private User isLogin(String login) {
-        User u;
-        u = udao.getUserByLogin(login);
-        return u;
-    }
-
-    private User isMail(String mail) {
-        User u;
-        u = udao.getUserByMail(mail);
-        return u;
     }
 
 }

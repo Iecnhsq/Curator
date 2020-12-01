@@ -135,6 +135,17 @@ public class AccountFrame extends JFrame {
         text5.setEditable(true);
         text6.setEditable(true);
         b1.setText("Apply!");
+
+        fio = String.valueOf(text1.getText());
+        log = String.valueOf(text2.getText());
+        pass = String.valueOf(text3.getText());
+        mail = String.valueOf(text4.getText());
+        tel = String.valueOf(text5.getText());
+        grp = String.valueOf(text6.getText());
+
+        if (fio.isEmpty() || fio.length() < 5) {
+
+        }
     }
 
     private void btnAct2(ActionEvent e) {

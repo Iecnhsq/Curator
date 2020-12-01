@@ -15,6 +15,16 @@ public class SendFrame extends JFrame {
 
     private void getForm() {
         panel = new JPanel();
+
+        setTitle("Send Mail Form");
+        setSize(322, 250);
+        setResizable(false);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        add(panel);
+
+        panel.setLayout(null);
+
+        setLocationRelativeTo(null);
     }
 
 }
