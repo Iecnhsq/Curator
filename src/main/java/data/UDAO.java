@@ -19,4 +19,15 @@ public class UDAO {
         return out;
     }
 
+    public User getUserByMail(String mail) {
+        Session s = HibernateUtil.getSESSIONFACTORY().openSession();
+        User out;
+        s.beginTransaction();
+        out = (User) s.createQuery("FROM User WHERE mail='" + mail + "'").uniqueResult();
+        s.getTransaction().commit();
+        s.close();
+        LOGGER.info(out);
+        return out;
+    }
+
 }

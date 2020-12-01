@@ -1,6 +1,7 @@
 package view;
 
-import data.Master;
+import data.UDAO;
+import data.User;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -14,7 +15,7 @@ import org.apache.log4j.Logger;
 public class RegisterFrame extends JFrame {
 
     private static final Logger LOGGER = Logger.getLogger(RegisterFrame.class);
-    private final Master M = new Master();
+    private final UDAO udao = new UDAO();
     private JLabel label1, label2, label3, label4, label5;
     private JTextField text1, text2, text3, text4;
     private JButton button;
@@ -35,7 +36,7 @@ public class RegisterFrame extends JFrame {
         label2 = new JLabel("Password");
         label3 = new JLabel("Confirm Password");
         label4 = new JLabel("E - Mail");
-        label5 = new JLabel("123");
+        label5 = new JLabel();
         text1 = new JTextField(25);
         text2 = new JTextField(25);
         text3 = new JTextField(25);
@@ -44,7 +45,7 @@ public class RegisterFrame extends JFrame {
         panel = new JPanel();
 
         setTitle("Register Form");
-        setSize(400, 400);
+        setSize(322, 250);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         add(panel);
@@ -75,14 +76,14 @@ public class RegisterFrame extends JFrame {
         text4.setBounds(130, 110, 165, 25);
         panel.add(text4);
 
-        button.setBounds(10, 150, 254, 25);
+        button.setBounds(10, 150, 284, 25);
         button.addActionListener((ActionEvent e) -> {
             btnAct(e);
         });
         panel.add(button);
 
         label5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label5.setBounds(10, 180, 254, 25);
+        label5.setBounds(10, 180, 284, 25);
         panel.add(label5);
 
         setLocationRelativeTo(null);
@@ -91,16 +92,21 @@ public class RegisterFrame extends JFrame {
     private void btnAct(ActionEvent e) {
         login = String.valueOf(text1.getText());
         pass = String.valueOf(text2.getText());
-        if (login.isEmpty() || pass.isEmpty()) {
+        confirmpass = String.valueOf(text3.getText());
+        mail = String.valueOf(text4.getText());
+        if (login.isEmpty() || isLogin(login) != null || login.length() < 5) {
             LOGGER.info(e);
+            LOGGER.info("Login = " + login);
             label5.setForeground(Color.red);
             label5.setText("Somesing went wrong...");
         } else {
-            if (!M.getLogin().equals(login)) {
+            if (pass.isEmpty() || pass.length() < 5 || !pass.equals(confirmpass)) {
+                LOGGER.info("Password = " + pass);
                 label5.setForeground(Color.red);
                 label5.setText("Somesing went wrong...");
             } else {
-                if (!M.getPassword().equals(pass)) {
+                if (mail.isEmpty() || isMail(mail) != null) {
+                    LOGGER.info("Mail = " + mail);
                     label5.setForeground(Color.red);
                     label5.setText("Somesing went wrong...");
                 } else {
@@ -109,6 +115,18 @@ public class RegisterFrame extends JFrame {
                 }
             }
         }
+    }
+
+    private User isLogin(String login) {
+        User u;
+        u = udao.getUserByLogin(login);
+        return u;
+    }
+
+    private User isMail(String mail) {
+        User u;
+        u = udao.getUserByMail(mail);
+        return u;
     }
 
 }
