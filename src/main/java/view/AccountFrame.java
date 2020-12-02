@@ -1,5 +1,6 @@
 package view;
 
+import data.Holder;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -69,6 +70,8 @@ public class AccountFrame extends JFrame {
         panel.add(text1);
 
         text2.setBounds(180, 30, 165, 25);
+        text2.setText(Holder.getLogin());
+        LOGGER.info(Holder.getLogin());
         panel.add(text2);
 
         text3.setBounds(350, 30, 165, 25);
