@@ -10,4 +10,6 @@ public interface Service {
 
     public User isMail(String mail);
 
+    public boolean registerUserInDb(String login, String password, String mail);
+
 }

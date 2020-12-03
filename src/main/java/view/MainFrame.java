@@ -10,10 +10,12 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.apache.log4j.Logger;
+import service.ServiceImpl;
 
 public class MainFrame extends JFrame {
 
     private static final Logger LOGGER = Logger.getLogger(MainFrame.class);
+    private final ServiceImpl src = new ServiceImpl();
     private JPanel panel;
     private JLabel label1, label2, label3, label4, label5, label6, label7, label8, label9, label10;
     private JButton button1, button2, button3, button4, button5;

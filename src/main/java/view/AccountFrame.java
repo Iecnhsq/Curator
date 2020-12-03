@@ -1,6 +1,7 @@
 package view;
 
 import data.Holder;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,10 +10,12 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import org.apache.log4j.Logger;
+import service.ServiceImpl;
 
 public class AccountFrame extends JFrame {
 
     private static final Logger LOGGER = Logger.getLogger(AccountFrame.class);
+    private final ServiceImpl src = new ServiceImpl();
     private JTextField text1, text2, text3, text4, text5, text6;
     private JLabel label;
     private JButton b1, b2, b3, b4, b5, b6;
@@ -67,23 +70,27 @@ public class AccountFrame extends JFrame {
         text6.setEditable(false);
 
         text1.setBounds(10, 30, 165, 25);
+        text1.setText(src.isLogin(Holder.getLogin()).getFio());
         panel.add(text1);
 
         text2.setBounds(180, 30, 165, 25);
-        text2.setText(Holder.getLogin());
-        LOGGER.info(Holder.getLogin());
+        text2.setText(src.isLogin(Holder.getLogin()).getLogin());
         panel.add(text2);
 
         text3.setBounds(350, 30, 165, 25);
+        text3.setText(src.isLogin(Holder.getLogin()).getPassword());
         panel.add(text3);
 
         text4.setBounds(520, 30, 165, 25);
+        text4.setText(src.isLogin(Holder.getLogin()).getMail());
         panel.add(text4);
 
         text5.setBounds(690, 30, 165, 25);
+        text5.setText(src.isLogin(Holder.getLogin()).getPhone());
         panel.add(text5);
 
         text6.setBounds(860, 30, 165, 25);
+        text6.setText(src.isLogin(Holder.getLogin()).getGroup_u());
         panel.add(text6);
 
         b1.setBounds(50, 70, 100, 30);
@@ -146,8 +153,43 @@ public class AccountFrame extends JFrame {
         tel = String.valueOf(text5.getText());
         grp = String.valueOf(text6.getText());
 
-        if (fio.isEmpty() || fio.length() < 5) {
-
+        if (fio.isEmpty() || fio.length() < 5 || fio.equals(text1.getText())) {
+            label.setForeground(Color.red);
+            label.setText("Oopsss... Somesing went wrong...");
+        } else {
+            if (log.isEmpty() || log.length() < 5 || log.equals(text2.getText())) {
+                label.setForeground(Color.red);
+                label.setText("Oopsss... Somesing went wrong...");
+            } else {
+                if (pass.isEmpty() || pass.length() < 5 || pass.equals(text3.getText())) {
+                    label.setForeground(Color.red);
+                    label.setText("Oopsss... Somesing went wrong...");
+                } else {
+                    if (mail.isEmpty() || mail.length() < 5 || mail.equals(text4.getText())) {
+                        label.setForeground(Color.red);
+                        label.setText("Oopsss... Somesing went wrong...");
+                    } else {
+                        if (tel.isEmpty() || tel.length() < 13 || tel.equals(text5.getText())) {
+                            label.setForeground(Color.red);
+                            label.setText("Oopsss... Somesing went wrong...");
+                        } else {
+                            if (grp.isEmpty() || grp.length() < 5 || grp.equals(text6.getText())) {
+                                label.setForeground(Color.red);
+                                label.setText("Oopsss... Somesing went wrong...");
+                            } else {
+                                label.setText("Is OK! Update!");
+                                text1.setEditable(false);
+                                text2.setEditable(false);
+                                text3.setEditable(false);
+                                text4.setEditable(false);
+                                text5.setEditable(false);
+                                text6.setEditable(false);
+                                b1.setText("Change!");
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -160,21 +202,27 @@ public class AccountFrame extends JFrame {
     }
 
     private void btnAct4(ActionEvent e) {
-        LOGGER.info(e);
-        new MainFrame().setVisible(true);
-        this.dispose();
+        if (b1.getText().equals("Change!")) {
+            LOGGER.info(e);
+            new MainFrame().setVisible(true);
+            this.dispose();
+        }
     }
 
     private void btnAct5(ActionEvent e) {
-        LOGGER.info(e);
-        new MainFrame().setVisible(true);
-        this.dispose();
+        if (b1.getText().equals("Change!")) {
+            LOGGER.info(e);
+            new MainFrame().setVisible(true);
+            this.dispose();
+        }
     }
 
     private void btnAct6(ActionEvent e) {
-        LOGGER.info(e);
-        new SDFrame().setVisible(true);
-        this.dispose();
+        if (b1.getText().equals("Change!")) {
+            LOGGER.info(e);
+            new SDFrame().setVisible(true);
+            this.dispose();
+        }
     }
 
 }
