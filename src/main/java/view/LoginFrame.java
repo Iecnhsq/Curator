@@ -1,5 +1,6 @@
 package view;
 
+import data.Holder;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -91,7 +92,8 @@ public class LoginFrame extends JFrame {
                     label3.setForeground(Color.red);
                     label3.setText("Somesing went wrong...");
                 } else {
-                    // login holder!!!!!
+                    Holder.setLogin(login);
+                    LOGGER.info("Set Login: " + Holder.getLogin());
                     new AccountFrame().setVisible(true);
                     this.dispose();
                 }
