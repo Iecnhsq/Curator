@@ -6,10 +6,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import org.apache.log4j.Logger;
+import service.ServiceImpl;
 
 public class SDFrame extends JFrame {
 
     private static final Logger LOGGER = Logger.getLogger(SDFrame.class);
+    private final ServiceImpl src = new ServiceImpl();
     private JPanel panel;
     private JTable table;
     private JButton b1, b2, b3, b4;
