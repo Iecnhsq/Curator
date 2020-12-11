@@ -1,5 +1,6 @@
 package view;
 
+import data.Holder;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -40,7 +41,7 @@ public class RegisterFrame extends JFrame {
         text2 = new JTextField(25);
         text3 = new JTextField(25);
         text4 = new JTextField(25);
-        button = new JButton("Sign In");
+        button = new JButton("Sign Up");
         panel = new JPanel();
 
         setTitle("Register Form");
@@ -109,7 +110,9 @@ public class RegisterFrame extends JFrame {
                     label5.setForeground(Color.red);
                     label5.setText("Somesing went wrong...");
                 } else {
-                    // create User
+                    src.registerUserInDb(login, pass, mail);
+                    Holder.setLogin(login);
+                    LOGGER.info("Reg = " + login);
                     new AccountFrame().setVisible(true);
                     this.dispose();
                 }

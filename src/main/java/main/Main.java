@@ -8,12 +8,15 @@ import view.RegisterFrame;
 
 public class Main {
 
+    /*
     public static void main(String[] args) throws IOException {
-        new LoginFrame().setVisible(true);
-        new RegisterFrame().setVisible(true);
-        new AccountFrame().setVisible(true);
-        new RegisterFrame().setVisible(true);
-        WordWorker wordWorker = new WordWorker();
-    }
+        //new LoginFrame().setVisible(true);
+        //new RegisterFrame().setVisible(true);
+        //new AccountFrame().setVisible(true);
+        //new RegisterFrame().setVisible(true);
+        //WordWorker wordWorker = new WordWorker();
 
+        new BINF().setVisible(true);
+    }
+     */
 }

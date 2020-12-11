@@ -39,11 +39,13 @@ public class UDAO {
         LOGGER.info("Add user:" + u);
     }
 
-    /* public boolean registerUserInDb(String login, String password, String city, String phone, String email) {
-        User user = new User(new Random().nextInt(), login, password, new Date(), 0, 0, new Gson().toJson(new Deck()), "Mage", 0, city, phone, email, 'n');
-        udao.addUser(user);
-        LOGGER.info("Registre User in DB!");
-        return true;
+    public void updateUser(User u) {
+        Session s = HibernateUtil.getSESSIONFACTORY().openSession();
+        s.beginTransaction();
+        s.update(u);
+        s.getTransaction().commit();
+        s.close();
+        LOGGER.info("Update user: " + u);
     }
-     */
+
 }
