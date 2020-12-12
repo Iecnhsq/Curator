@@ -1,6 +1,8 @@
 package main;
 
 import java.awt.event.ActionEvent;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -13,6 +15,13 @@ public class NewJFrame extends javax.swing.JFrame {
 
     public NewJFrame() {
         initComponents();
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/ММ/yyyy");
+        LocalDate localDate = LocalDate.now();
+        jLabel8.setText(dtf.format(localDate));
+
+        String t1 = String.valueOf(jTextField1.getText());
+        String t2 = String.valueOf(jTextField2.getText());
 
         Object[][] data = new String[][]{{"1", "Афанасенко", "", "", "", "", ""},
         {"2", "Богданов", "", "", "", "", ""},
