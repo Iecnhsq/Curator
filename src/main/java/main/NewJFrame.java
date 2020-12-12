@@ -63,7 +63,7 @@ public class NewJFrame extends javax.swing.JFrame {
             LOGGER.info("Insert Coll" + Arrays.toString(columns));
         });
 
-        jButton3.addActionListener((ActionEvent e) -> {
+        jButton3.addActionListener((var e) -> {
             int idx = jTable1.getSelectedRow();
             model.removeRow(idx);
             jLabel1.setText("Remove Row");
