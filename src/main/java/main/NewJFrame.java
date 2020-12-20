@@ -1,8 +1,6 @@
 package main;
 
 import java.awt.event.ActionEvent;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -12,13 +10,12 @@ import org.apache.log4j.Logger;
 public class NewJFrame extends javax.swing.JFrame {
 
     private static final Logger LOGGER = Logger.getLogger(NewJFrame.class);
+    private final DoIt dt = new DoIt();
 
     public NewJFrame() {
         initComponents();
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate localDate = LocalDate.now();
-        jLabel8.setText(dtf.format(localDate));
+        jLabel8.setText(dt.getDate());
 
         String t1 = String.valueOf(jTextField1.getText());
         String t2 = String.valueOf(jTextField2.getText());
@@ -34,7 +31,7 @@ public class NewJFrame extends javax.swing.JFrame {
         {"9", "Чупряк", "", "", "", "", ""},
         {"10", "Щербина", "", "", "", "", ""}};
 
-        Object[] columns = new String[]{"Id", "F-S Name", "ТОЗП", "The serious reason", "Truancy", "Total", "GPA"};
+        Object[] columns = new String[]{"Id", "F-S Name", "ТОЗП", "TSR", "Truancy", "Total", "GPA"};
 
         TableColumnModel columnModel = jTable1.getColumnModel();
 
@@ -90,6 +87,7 @@ public class NewJFrame extends javax.swing.JFrame {
             jLabel1.setText("! SAVE !");
             LOGGER.info("! SAVE !");
         });
+
     }
 
     @SuppressWarnings("unchecked")

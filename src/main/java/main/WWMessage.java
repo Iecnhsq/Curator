@@ -15,8 +15,9 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTSectPr;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTText;
 
 public class WWMessage {
-    
+
     private static final Logger LOGGER = Logger.getLogger(WWMessage.class);
+    private final DoIt dt = new DoIt();
 
     public WWMessage() throws IOException {
         getWW();
@@ -27,7 +28,7 @@ public class WWMessage {
         CTSectPr ctSectPr = docxModel.getDocument().getBody().addNewSectPr();
         XWPFHeaderFooterPolicy headerFooterPolicy = new XWPFHeaderFooterPolicy(docxModel, ctSectPr);
         CTP ctpHeaderModel = createHeaderModel(
-                "ДВНЗ КМТК 01.12.2020"
+                "ДВНЗ КМТК " + dt.getDate()
         );
         XWPFParagraph headerParagraph = new XWPFParagraph(ctpHeaderModel, docxModel);
         headerFooterPolicy.createHeader(
