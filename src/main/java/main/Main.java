@@ -1,5 +1,6 @@
 package main;
 
+/*
 import view.AccountFrame;
 import view.LoginFrame;
 import java.io.IOException;
@@ -7,6 +8,7 @@ import service.WordWorker;
 import view.RegisterFrame;
 import view.SDFrame;
 
+ */
 public class Main {
 
     /*
