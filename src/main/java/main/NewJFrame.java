@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.event.ActionEvent;
 import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -20,18 +19,20 @@ public class NewJFrame extends javax.swing.JFrame {
         String t1 = String.valueOf(jTextField1.getText());
         String t2 = String.valueOf(jTextField2.getText());
 
-        Object[][] data = new String[][]{{"1", "Афанасенко", "", "", "", "", ""},
-        {"2", "Богданов", "", "", "", "", ""},
-        {"3", "Зленко", "", "", "", "", ""},
-        {"4", "Іпатов", "", "", "", "", ""},
-        {"5", "Панчик", "", "", "", "", ""},
-        {"6", "Пінчук", "", "", "", "", ""},
-        {"7", "Семенченков", "", "", "", "", ""},
-        {"8", "Ткаченко", "", "", "", "", ""},
-        {"9", "Чупряк", "", "", "", "", ""},
-        {"10", "Щербина", "", "", "", "", ""}};
+        Object[][] data = new String[][]{{"1", "Афанасенко", "", "", "", "", "", "", "", "", "", "", "", "", ""},
+        {"2", "Богданов", "", "", "", "", "", "", "", "", "", "", "", "", ""},
+        {"3", "Зленко", "", "", "", "", "", "", "", "", "", "", "", "", ""},
+        {"4", "Іпатов", "", "", "", "", "", "", "", "", "", "", "", "", ""},
+        {"5", "Панчик", "", "", "", "", "", "", "", "", "", "", "", "", ""},
+        {"6", "Пінчук", "", "", "", "", "", "", "", "", "", "", "", "", ""},
+        {"7", "Семенченков", "", "", "", "", "", "", "", "", "", "", "", "", ""},
+        {"8", "Ткаченко", "", "", "", "", "", "", "", "", "", "", "", "", ""},
+        {"9", "Чупряк", "", "", "", "", "", "", "", "", "", "", "", "", ""},
+        {"10", "Щербина", "", "", "", "", "", "", "", "", "", "", "", "", ""}};
 
-        Object[] columns = new String[]{"Id", "F-S Name", "ТОЗП", "TSR", "Truancy", "Total", "GPA"};
+        Object[] columns = new String[]{"№ п/п", "П. І. Б.", "Економічна теорія", "Соціологія", "БЖД",
+            "Устаткування для ел. зв. пл.", "Устаткування для зв. тис.", "НОРЗУ", "Устаткування для терм. різ.",
+            "МЗУ", "Устаткування для нап. та нап.", "З поважних причин", "Прогулів", "Всього", "Середній бал"};
 
         TableColumnModel columnModel = jTable1.getColumnModel();
 
@@ -44,15 +45,15 @@ public class NewJFrame extends javax.swing.JFrame {
         jTable1.setModel(model);
         jTable1.setRowHeight(20);
 
-        jButton1.addActionListener((ActionEvent e) -> {
+        jButton1.addActionListener((var e) -> {
             int idx = jTable1.getSelectedRow();
             model.insertRow(idx + 1, new String[]{
-                "Id" + String.valueOf(jTable1.getRowCount()), "FS Name", "Point", "", "", "", ""});
+                "№ п/п" + String.valueOf(jTable1.getRowCount()), "П. І. Б.", "", "", "", "", "", "", "", "", "", "", "", "", ""});
             jLabel1.setText("Insert Row");
             LOGGER.info("Insert Row" + idx);
         });
 
-        jButton2.addActionListener((ActionEvent e) -> {
+        jButton2.addActionListener((var e) -> {
             TableColumn сolumn = new TableColumn(3, 50);
             сolumn.setHeaderValue("<html>" + jTextField3.getText() + "</html>");
             columnModel.addColumn(сolumn);
@@ -76,10 +77,12 @@ public class NewJFrame extends javax.swing.JFrame {
         });
 
         jButton5.addActionListener((var e) -> {
+            jLabel1.setText("Remove Coll");
             LOGGER.info("! PRINT !");
         });
 
         jButton6.addActionListener((var e) -> {
+            jLabel1.setText("Remove Coll");
             LOGGER.info("Send Message");
         });
 
