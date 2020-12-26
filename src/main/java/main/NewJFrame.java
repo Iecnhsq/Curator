@@ -19,16 +19,16 @@ public class NewJFrame extends javax.swing.JFrame {
         String t1 = String.valueOf(jTextField1.getText());
         String t2 = String.valueOf(jTextField2.getText());
 
-        Object[][] data = new String[][]{{"1", "Афанасенко", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-        {"2", "Богданов", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-        {"3", "Зленко", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-        {"4", "Іпатов", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-        {"5", "Панчик", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-        {"6", "Пінчук", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-        {"7", "Семенченков", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-        {"8", "Ткаченко", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-        {"9", "Чупряк", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-        {"10", "Щербина", "", "", "", "", "", "", "", "", "", "", "", "", ""}};
+        Object[][] data = new String[][]{{"1", "Афанасенко", "3", "4", "4", "", "", "", "", "", "", "", "", "", ""},
+        {"2", "Богданов", "3", "5", "4", "", "", "", "", "", "", "", "", "", ""},
+        {"3", "Зленко", "4", "3", "3", "", "", "", "", "", "", "", "", "", ""},
+        {"4", "Іпатов", "5", "4", "2", "", "", "", "", "", "", "", "", "", ""},
+        {"5", "Панчик", "2", "3", "3", "", "", "", "", "", "", "", "", "", ""},
+        {"6", "Пінчук", "3", "3", "4", "", "", "", "", "", "", "", "", "", ""},
+        {"7", "Семенченков", "3", "4", "3", "", "", "", "", "", "", "", "", "", ""},
+        {"8", "Ткаченко", "4", "3", "3", "", "", "", "", "", "", "", "", "", ""},
+        {"9", "Чупряк", "2", "2", "4", "", "", "", "", "", "", "", "", "", ""},
+        {"10", "Щербина", "3", "3", "3", "", "", "", "", "", "", "", "", "", ""}};
 
         Object[] columns = new String[]{"№ п/п", "П. І. Б.", "Економічна теорія", "Соціологія", "БЖД",
             "Устаткування для ел. зв. пл.", "Устаткування для зв. тис.", "НОРЗУ", "Устаткування для терм. різ.",
@@ -87,6 +87,17 @@ public class NewJFrame extends javax.swing.JFrame {
         });
 
         jButton7.addActionListener((var e) -> {
+            double totalPoint = dt.totalPoint(jTable1);
+            double fiveAndFour = dt.fiveAndFour(jTable1);
+            double negative = dt.negative(jTable1);
+            double studentPerformance = Math.round(((totalPoint - negative) / totalPoint) * 100);
+            double quality = Math.round((fiveAndFour / totalPoint) * 100);
+            jLabel3.setText(String.valueOf(totalPoint));
+            jLabel4.setText(String.valueOf(fiveAndFour));
+            jLabel2.setText(String.valueOf(totalPoint - fiveAndFour));
+            jLabel5.setText(String.valueOf(studentPerformance) + " %");
+            jLabel6.setText(String.valueOf(quality) + " %");
+            dt.averageScore(jTable1);
             jLabel1.setText("! SAVE !");
             LOGGER.info("! SAVE !");
         });
