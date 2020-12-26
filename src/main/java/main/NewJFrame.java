@@ -1,6 +1,8 @@
 package main;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.logging.Level;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -10,6 +12,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private static final Logger LOGGER = Logger.getLogger(NewJFrame.class);
     private final DoIt dt = new DoIt();
+    private final WWTable wwt = new WWTable();
 
     public NewJFrame() {
         initComponents();
@@ -77,12 +80,17 @@ public class NewJFrame extends javax.swing.JFrame {
         });
 
         jButton5.addActionListener((var e) -> {
-            jLabel1.setText("Remove Coll");
+            try {
+                wwt.getWW(t1, t2);
+            } catch (IOException ex) {
+                java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jLabel1.setText("! PRINT !");
             LOGGER.info("! PRINT !");
         });
 
         jButton6.addActionListener((var e) -> {
-            jLabel1.setText("Remove Coll");
+            jLabel1.setText("Send Message");
             LOGGER.info("Send Message");
         });
 
