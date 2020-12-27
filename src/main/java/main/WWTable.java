@@ -20,14 +20,13 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTText;
 public class WWTable {
 
     private static final Logger LOGGER = Logger.getLogger(WWTable.class);
-    private final DoIt dt = new DoIt();
+    private final Service service = new Service();
 
     public void getWWT(String t1, String t2, double totalPoint, double fiveAndFour, double studentPerformance, double quality) throws FileNotFoundException, IOException {
         XWPFDocument docxModel = new XWPFDocument();
         CTSectPr ctSectPr = docxModel.getDocument().getBody().addNewSectPr();
         XWPFHeaderFooterPolicy headerFooterPolicy = new XWPFHeaderFooterPolicy(docxModel, ctSectPr);
-        CTP ctpHeaderModel = createHeaderModel(
-                "ДВНЗ КМТК " + dt.getDate()
+        CTP ctpHeaderModel = createHeaderModel("ДВНЗ КМТК " + service.getDate()
         );
         XWPFParagraph headerParagraph = new XWPFParagraph(ctpHeaderModel, docxModel);
         headerFooterPolicy.createHeader(
@@ -79,7 +78,7 @@ public class WWTable {
         tableRowThree.getCell(0).setText("Кількість незадовільних оцінок:");
         tableRowThree.getCell(1).setText(String.valueOf(totalPoint - fiveAndFour));
         tableRowThree.getCell(2).setText("Дата заповнення:");
-        tableRowThree.getCell(3).setText(dt.getDate());
+        tableRowThree.getCell(3).setText(service.getDate());
         tableRowThree.setHeight((int) (twipsPerInch * 1 / 4));
 
         XWPFTableRow tableRowFour = tableBottom.createRow();

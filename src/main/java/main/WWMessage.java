@@ -17,14 +17,13 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTText;
 public class WWMessage {
 
     private static final Logger LOGGER = Logger.getLogger(WWMessage.class);
-    private final DoIt dt = new DoIt();
+    private final Service service = new Service();
 
     public void getWWM() throws FileNotFoundException, IOException {
         XWPFDocument docxModel = new XWPFDocument();
         CTSectPr ctSectPr = docxModel.getDocument().getBody().addNewSectPr();
         XWPFHeaderFooterPolicy headerFooterPolicy = new XWPFHeaderFooterPolicy(docxModel, ctSectPr);
-        CTP ctpHeaderModel = createHeaderModel(
-                "ДВНЗ КМТК " + dt.getDate()
+        CTP ctpHeaderModel = createHeaderModel("ДВНЗ КМТК " + service.getDate()
         );
         XWPFParagraph headerParagraph = new XWPFParagraph(ctpHeaderModel, docxModel);
         headerFooterPolicy.createHeader(
