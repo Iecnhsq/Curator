@@ -6,12 +6,14 @@ import javax.swing.JTable;
 
 public class Service {
 
+    // Дата
     public String getDate() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         return dtf.format(localDate);
     }
 
+    // Все оценки
     public double totalPoint(JTable table) {
         double total = 0;
         String point;
@@ -26,6 +28,7 @@ public class Service {
         return total;
     }
 
+    // 5 и 4 
     public double fiveAndFour(JTable table) {
         double fif = 0;
         String point;
@@ -40,6 +43,7 @@ public class Service {
         return fif;
     }
 
+    // Негативные оценки
     public double negative(JTable table) {
         double neg = 0;
         String point;
@@ -54,6 +58,7 @@ public class Service {
         return neg;
     }
 
+    // Средний балл
     public void averageScore(JTable table) {
         double sum = 0;
         int cols = 0;
@@ -81,6 +86,7 @@ public class Service {
         }
     }
 
+    // Прогулы
     public void truancy(JTable table) {
         int a = getc("З поважних причин", table);
         int b = getc("Всього", table);
@@ -100,6 +106,7 @@ public class Service {
         }
     }
 
+    // Номер столбца
     private int getc(String s, JTable table) {
         int a = 0;
         for (int i = 0; i < table.getColumnCount(); i++) {

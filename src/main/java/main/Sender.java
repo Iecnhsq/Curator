@@ -11,10 +11,9 @@ import javax.mail.internet.MimeMessage;
 
 public class Sender {
 
-    public void send() {
-        final String username = "tmmkats@gmail.com";
-        final String password = "Persik201";
+    private final Settings settings = new Settings();
 
+    public void send() {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -24,15 +23,14 @@ public class Sender {
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
+                return new PasswordAuthentication(settings.mailUser, settings.mailPassword);
             }
         });
 
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("tmmkats@gmail.com"));
-            message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("gmiller180890@gmail.com"));
+            message.setFrom(new InternetAddress(settings.mailUser));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("gmiller180890@gmail.com"));
             message.setSubject("Testing Subject");
             message.setText("Dear Mail Crawler,\n\n No spam to my email, please!");
             Transport.send(message);
