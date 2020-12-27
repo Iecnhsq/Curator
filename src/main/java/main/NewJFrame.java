@@ -14,6 +14,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private final DoIt dt = new DoIt();
     private final WWTable wwt = new WWTable();
     private final WWMessage wwm = new WWMessage();
+    private final Sender sender = new Sender();
     private static double totalPoint = 0;
     private static double fiveAndFour = 0;
     private static double studentPerformance = 0;
@@ -96,6 +97,7 @@ public class NewJFrame extends javax.swing.JFrame {
         });
 
         jButton6.addActionListener((var e) -> {
+            sender.send();
             jLabel1.setText("Send Message");
             LOGGER.info("Send Message");
         });
