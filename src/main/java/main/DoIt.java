@@ -81,4 +81,33 @@ public class DoIt {
         }
     }
 
+    public void truancy(JTable table) {
+        int a = getc("З поважних причин", table);
+        int b = getc("Всього", table);
+
+        int sum = 0;
+        int count = 0;
+        for (int i = 0; i < table.getRowCount(); i++) {
+            for (int j = a; j < table.getColumnCount() && j < table.getColumnCount() - 2; j++) {
+                sum += Integer.parseInt(table.getValueAt(i, j).toString());
+                count++;
+                table.setValueAt(String.valueOf(sum), i, b);
+                if (count == 2) {
+                    count = 0;
+                    sum = 0;
+                }
+            }
+        }
+    }
+
+    private int getc(String s, JTable table) {
+        int a = 0;
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            if (table.getColumnName(i).equals(s)) {
+                a = i;
+            }
+        }
+        return a;
+    }
+
 }

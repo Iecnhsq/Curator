@@ -16,14 +16,13 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTP;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTSectPr;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTText;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.STHeightRule;
 
 public class WWTable {
 
     private static final Logger LOGGER = Logger.getLogger(WWTable.class);
     private final DoIt dt = new DoIt();
 
-    public void getWW(String t1, String t2) throws FileNotFoundException, IOException {
+    public void getWWT(String t1, String t2, double totalPoint, double fiveAndFour, double studentPerformance, double quality) throws FileNotFoundException, IOException {
         XWPFDocument docxModel = new XWPFDocument();
         CTSectPr ctSectPr = docxModel.getDocument().getBody().addNewSectPr();
         XWPFHeaderFooterPolicy headerFooterPolicy = new XWPFHeaderFooterPolicy(docxModel, ctSectPr);
@@ -60,32 +59,32 @@ public class WWTable {
         PC2.addBreak();
 
         int twipsPerInch = 1440;
-        XWPFTable table1 = docxModel.createTable();
-        table1.setTableAlignment(TableRowAlign.CENTER);
-        XWPFTableRow tableRowOne = table1.getRow(0);
+        XWPFTable tableBottom = docxModel.createTable();
+        tableBottom.setTableAlignment(TableRowAlign.CENTER);
+        XWPFTableRow tableRowOne = tableBottom.getRow(0);
         tableRowOne.getCell(0).setText("Загальна кількість оцінок:");
-        tableRowOne.addNewTableCell().setText("Z");
+        tableRowOne.addNewTableCell().setText(String.valueOf(totalPoint));
         tableRowOne.addNewTableCell().setText("% якості:");
-        tableRowOne.addNewTableCell().setText("Z");
+        tableRowOne.addNewTableCell().setText(String.valueOf(quality));
         tableRowOne.setHeight((int) (twipsPerInch * 1 / 4));
 
-        XWPFTableRow tableRowTwo = table1.createRow();
+        XWPFTableRow tableRowTwo = tableBottom.createRow();
         tableRowTwo.getCell(0).setText("Кількість оцінок \"5\" та \"4\":");
-        tableRowTwo.getCell(1).setText("Z");
+        tableRowTwo.getCell(1).setText(String.valueOf(fiveAndFour));
         tableRowTwo.getCell(2).setText("% прогулів:");
         tableRowTwo.getCell(3).setText("Z");
         tableRowTwo.setHeight((int) (twipsPerInch * 1 / 4));
 
-        XWPFTableRow tableRowThree = table1.createRow();
+        XWPFTableRow tableRowThree = tableBottom.createRow();
         tableRowThree.getCell(0).setText("Кількість незадовільних оцінок:");
-        tableRowThree.getCell(1).setText("Z");
+        tableRowThree.getCell(1).setText(String.valueOf(totalPoint - fiveAndFour));
         tableRowThree.getCell(2).setText("Дата заповнення:");
         tableRowThree.getCell(3).setText(dt.getDate());
         tableRowThree.setHeight((int) (twipsPerInch * 1 / 4));
 
-        XWPFTableRow tableRowFour = table1.createRow();
+        XWPFTableRow tableRowFour = tableBottom.createRow();
         tableRowFour.getCell(0).setText("% успішності:");
-        tableRowFour.getCell(1).setText("Z");
+        tableRowFour.getCell(1).setText(String.valueOf(studentPerformance));
         tableRowFour.getCell(2).setText("Керівник групи:");
         tableRowFour.getCell(3).setText("І.М. Богданов");
         tableRowFour.setHeight((int) (twipsPerInch * 1 / 4));
@@ -111,7 +110,8 @@ public class WWTable {
                 + " наступних предметів/дисциплін:");
          */
         try (
-                 FileOutputStream outputStream = new FileOutputStream("C:\\Users\\ivans\\Music\\Відомість успішності.docx")) {
+                 FileOutputStream outputStream = new FileOutputStream("D:/Таблиця.docx")) {
+            //FileOutputStream outputStream = new FileOutputStream("C:\\Users\\ivans\\Music\\Відомість успішності.docx")) {
             docxModel.write(outputStream);
         }
         LOGGER.info("Успешно записан в файл");

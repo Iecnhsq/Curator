@@ -13,6 +13,11 @@ public class NewJFrame extends javax.swing.JFrame {
     private static final Logger LOGGER = Logger.getLogger(NewJFrame.class);
     private final DoIt dt = new DoIt();
     private final WWTable wwt = new WWTable();
+    private final WWMessage wwm = new WWMessage();
+    private static double totalPoint = 0;
+    private static double fiveAndFour = 0;
+    private static double studentPerformance = 0;
+    private static double quality = 0;
 
     public NewJFrame() {
         initComponents();
@@ -22,16 +27,16 @@ public class NewJFrame extends javax.swing.JFrame {
         String t1 = String.valueOf(jTextField1.getText());
         String t2 = String.valueOf(jTextField2.getText());
 
-        Object[][] data = new String[][]{{"1", "Афанасенко", "3", "4", "4", "", "", "", "", "", "", "", "", "", ""},
-        {"2", "Богданов", "3", "5", "4", "", "", "", "", "", "", "", "", "", ""},
-        {"3", "Зленко", "4", "3", "3", "", "", "", "", "", "", "", "", "", ""},
-        {"4", "Іпатов", "5", "4", "2", "", "", "", "", "", "", "", "", "", ""},
-        {"5", "Панчик", "2", "3", "3", "", "", "", "", "", "", "", "", "", ""},
-        {"6", "Пінчук", "3", "3", "4", "", "", "", "", "", "", "", "", "", ""},
-        {"7", "Семенченков", "3", "4", "3", "", "", "", "", "", "", "", "", "", ""},
-        {"8", "Ткаченко", "4", "3", "3", "", "", "", "", "", "", "", "", "", ""},
-        {"9", "Чупряк", "2", "2", "4", "", "", "", "", "", "", "", "", "", ""},
-        {"10", "Щербина", "3", "3", "3", "", "", "", "", "", "", "", "", "", ""}};
+        Object[][] data = new String[][]{{"1", "Афанасенко", "3", "4", "4", "2", "3", "", "4", "2", "2", "3", "7", "0", "0"},
+        {"2", "Богданов", "3", "5", "4", "3", "3", "4", "2", "2", "н/а", "2", "1", "0", "0"},
+        {"3", "Зленко", "4", "3", "3", "3", "4", "5", "4", "4", "4", "3", "0", "0", "0"},
+        {"4", "Іпатов", "5", "4", "2", "2", "3", "3", "3", "3", "3", "2", "2", "0", "0"},
+        {"5", "Панчик", "2", "3", "3", "2", "", "-", "н/а", "3", "-", "1", "1", "0", "0"},
+        {"6", "Пінчук", "3", "3", "4", "3", "3", "3", "3", "3", "3", "2", "2", "0", "0"},
+        {"7", "Семенченков", "3", "4", "3", "4", "4", "3", "5", "4", "4", "2", "2", "0", "0"},
+        {"8", "Ткаченко", "4", "3", "3", "3", "3", "4", "3", "4", "3", "1", "1", "0", "0"},
+        {"9", "Чупряк", "2", "2", "4", "2", "3", "4", "3", "3", "4", "0", "0", "0", "0"},
+        {"10", "Щербина", "3", "3", "3", "3", "3", "4", "4", "4", "2", "1", "2", "0", "0"}};
 
         Object[] columns = new String[]{"№ п/п", "П. І. Б.", "Економічна теорія", "Соціологія", "БЖД",
             "Устаткування для ел. зв. пл.", "Устаткування для зв. тис.", "НОРЗУ", "Устаткування для терм. різ.",
@@ -81,7 +86,8 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jButton5.addActionListener((var e) -> {
             try {
-                wwt.getWW(t1, t2);
+                wwt.getWWT(t1, t2, totalPoint, fiveAndFour, studentPerformance, quality);
+                wwm.getWWM();
             } catch (IOException ex) {
                 java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -95,17 +101,18 @@ public class NewJFrame extends javax.swing.JFrame {
         });
 
         jButton7.addActionListener((var e) -> {
-            double totalPoint = dt.totalPoint(jTable1);
-            double fiveAndFour = dt.fiveAndFour(jTable1);
+            totalPoint = dt.totalPoint(jTable1);
+            fiveAndFour = dt.fiveAndFour(jTable1);
             double negative = dt.negative(jTable1);
-            double studentPerformance = Math.round(((totalPoint - negative) / totalPoint) * 100);
-            double quality = Math.round((fiveAndFour / totalPoint) * 100);
+            studentPerformance = Math.round(((totalPoint - negative) / totalPoint) * 100);
+            quality = Math.round((fiveAndFour / totalPoint) * 100);
             jLabel3.setText(String.valueOf(totalPoint));
             jLabel4.setText(String.valueOf(fiveAndFour));
             jLabel2.setText(String.valueOf(totalPoint - fiveAndFour));
             jLabel5.setText(String.valueOf(studentPerformance) + " %");
             jLabel6.setText(String.valueOf(quality) + " %");
             dt.averageScore(jTable1);
+            dt.truancy(jTable1);
             jLabel1.setText("! SAVE !");
             LOGGER.info("! SAVE !");
         });

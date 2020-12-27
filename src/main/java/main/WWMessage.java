@@ -19,11 +19,7 @@ public class WWMessage {
     private static final Logger LOGGER = Logger.getLogger(WWMessage.class);
     private final DoIt dt = new DoIt();
 
-    public WWMessage() throws IOException {
-        getWW();
-    }
-
-    private void getWW() throws FileNotFoundException, IOException {
+    public void getWWM() throws FileNotFoundException, IOException {
         XWPFDocument docxModel = new XWPFDocument();
         CTSectPr ctSectPr = docxModel.getDocument().getBody().addNewSectPr();
         XWPFHeaderFooterPolicy headerFooterPolicy = new XWPFHeaderFooterPolicy(docxModel, ctSectPr);
