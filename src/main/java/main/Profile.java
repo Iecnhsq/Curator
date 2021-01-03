@@ -1,6 +1,10 @@
 package main;
 
 import java.awt.Color;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.table.DefaultTableModel;
 import org.apache.log4j.Logger;
 
@@ -12,10 +16,10 @@ public class Profile extends javax.swing.JFrame {
     public Profile() {
         initComponents();
 
-        Object[][] data = new String[][]{{"1", "", "", ""},
-        {"2", "", "", ""},
-        {"3", "", "", ""},
-        {"4", "", "", ""}};
+        Object[][] data = new String[][]{{"1", "Афанасенко", "123", "i@i"},
+        {"2", "Богданов", "123", "i@i"},
+        {"3", "Зленко", "123", "i@i"},
+        {"4", "Іпатов", "123", "i@i"}};
         Object[] columns = new String[]{"№ п/п", "П. І. Б.", "Телефон батьків", "Пошта батьків"};
 
         DefaultTableModel model = new DefaultTableModel(data, columns) {
@@ -28,17 +32,17 @@ public class Profile extends javax.swing.JFrame {
         jTable1.setRowHeight(20);
 
         jButton1.addActionListener((var e) -> {
-            int idx = jTable1.getSelectedRow();
-            model.insertRow(idx + 1, new String[]{"№ п/п", "П. І. Б.", "Телефон батьків", "Пошта батьків"});
-            jLabel1.setText("Insert Row");
-            LOGGER.info("Insert Row" + idx);
+            int gsr = jTable1.getSelectedRow();
+            model.insertRow(gsr + 1, new String[]{"№ п/п", "П. І. Б.", "Телефон батьків", "Пошта батьків"});
+            jLabel1.setText("Додано рядок");
+            LOGGER.info("Додано рядок" + e);
         });
 
         jButton2.addActionListener((var e) -> {
-            int idx = jTable1.getSelectedRow();
-            model.removeRow(idx);
-            jLabel1.setText("Remove Row");
-            LOGGER.info("Remove Row" + idx);
+            int gsr = jTable1.getSelectedRow();
+            model.removeRow(gsr);
+            jLabel1.setText("Видалено рядок");
+            LOGGER.info("Видалено рядок" + e);
         });
     }
 
@@ -58,7 +62,7 @@ public class Profile extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -212,7 +216,30 @@ public class Profile extends javax.swing.JFrame {
                             jLabel1.setText(status + "Увага!");
                             LOGGER.info("Увага!" + evt);
                         } else {
-                            ////////
+                            try {
+                                BufferedWriter writer = new BufferedWriter(new FileWriter(new File("C://Users//gmill//Pictures//notes.txt")));
+                                writer.write("Куратор групи: " + curatorGroup);
+                                writer.newLine();
+                                writer.write("Група: " + group);
+                                writer.newLine();
+                                writer.write("Пошта: " + mail);
+                                writer.newLine();
+                                writer.write("Пароль: " + passMail);
+                                writer.newLine();
+                                for (int i = 0; i < jTable1.getRowCount(); i++) {
+                                    writer.newLine();
+                                    for (int j = 0; j < jTable1.getColumnCount(); j++) {
+                                        writer.write((jTable1.getValueAt(i, j).toString()));
+                                        writer.write("\t");
+                                    }
+                                }
+                                writer.flush();
+                                jLabel1.setText(status + "Файл записано успішно!");
+                                LOGGER.info("Файл записано успішно!");
+                            } catch (IOException ex) {
+                                LOGGER.info(ex);
+                            }
+                            this.dispose();
                         }
                     }
                 }

@@ -1,7 +1,6 @@
 package main;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -61,7 +60,7 @@ public class Main extends javax.swing.JFrame {
             model.insertRow(idx + 1, new String[]{
                 "№ п/п" + String.valueOf(jTable1.getRowCount()), "П. І. Б.", "", "", "", "", "", "", "", "", "", "", "", "", ""});
             jLabel1.setText("Insert Row");
-            LOGGER.info("Insert Row" + idx);
+            LOGGER.info("Insert Row" + e);
         });
 
         jButton2.addActionListener((var e) -> {
@@ -69,14 +68,14 @@ public class Main extends javax.swing.JFrame {
             сolumn.setHeaderValue("<html>" + jTextField3.getText() + "</html>");
             columnModel.addColumn(сolumn);
             jLabel1.setText("Insert Coll");
-            LOGGER.info("Insert Coll" + Arrays.toString(columns));
+            LOGGER.info("Insert Coll" + e);
         });
 
         jButton3.addActionListener((var e) -> {
             int idx = jTable1.getSelectedRow();
             model.removeRow(idx);
             jLabel1.setText("Remove Row");
-            LOGGER.info("Remove Row" + idx);
+            LOGGER.info("Remove Row" + e);
         });
 
         jButton4.addActionListener((var e) -> {
@@ -84,7 +83,7 @@ public class Main extends javax.swing.JFrame {
             TableColumn сolumn = jTable1.getColumnModel().getColumn(idx);
             jTable1.removeColumn(сolumn);
             jLabel1.setText("Remove Coll");
-            LOGGER.info("Remove Coll" + idx);
+            LOGGER.info("Remove Coll" + e);
         });
 
     }
@@ -118,6 +117,7 @@ public class Main extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -309,7 +309,16 @@ public class Main extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu3.setText("Редагувати профіль");
+        jMenu3.setText("Профіль");
+
+        jMenuItem4.setText("Редагувати");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem4);
+
         jMenuBar1.add(jMenu3);
 
         jMenu2.setText("Вихід");
@@ -366,6 +375,11 @@ public class Main extends javax.swing.JFrame {
         LOGGER.info("Send Message");
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        new Profile().setVisible(true);
+        LOGGER.info(evt);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -404,6 +418,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
