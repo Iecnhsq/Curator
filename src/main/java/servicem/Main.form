@@ -54,6 +54,16 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x412;&#x438;&#x445;&#x456;&#x434;"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x412;&#x438;&#x445;&#x456;&#x434;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem5ActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
@@ -243,21 +253,33 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x414;&#x43e;&#x434;&#x430;&#x442;&#x438; &#x440;&#x44f;&#x434;&#x43e;&#x43a;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x414;&#x43e;&#x434;&#x430;&#x442;&#x438; &#x441;&#x442;&#x43e;&#x432;&#x43f;&#x435;&#x446;&#x44c;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x412;&#x456;&#x434;&#x430;&#x43b;&#x438;&#x442;&#x438; &#x440;&#x44f;&#x434;&#x43e;&#x43a;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton4">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x412;&#x438;&#x434;&#x430;&#x43b;&#x438;&#x442;&#x438; &#x441;&#x442;&#x43e;&#x432;&#x43f;&#x435;&#x446;&#x44c;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField3">
           <Properties>
