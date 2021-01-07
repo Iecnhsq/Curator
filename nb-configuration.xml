@@ -2,6 +2,5 @@
 <project-shared-configuration>
     <properties xmlns="http://www.netbeans.org/ns/maven-properties-data/1">
         <netbeans.hint.jdkPlatform>JDK_15</netbeans.hint.jdkPlatform>
-        <org-netbeans-modules-javascript2-requirejs.enabled>true</org-netbeans-modules-javascript2-requirejs.enabled>
     </properties>
 </project-shared-configuration>
