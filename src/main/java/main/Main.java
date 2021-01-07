@@ -1,5 +1,7 @@
 package main;
 
+import serviceww.WWMessage;
+import serviceww.WWTable;
 import java.io.IOException;
 import java.util.logging.Level;
 import javax.swing.table.DefaultTableModel;

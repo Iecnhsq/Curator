@@ -17,6 +17,8 @@ import org.apache.log4j.Logger;
 public class Profile extends javax.swing.JFrame {
 
     private static final Logger LOGGER = Logger.getLogger(Profile.class);
+    private final ServiceP serviceP = new ServiceP();
+
     private JButton button1, button2, button3;
     private JLabel label1;
     private JPanel panel;
@@ -35,10 +37,10 @@ public class Profile extends javax.swing.JFrame {
     private void initComponents() {
 
         panel = new JPanel();
-        text1 = new JTextField("Куратор групи");
-        text2 = new JTextField("Група");
-        text3 = new JTextField("Робоча пошта");
-        text4 = new JTextField("Пароль до пошти");
+        text1 = new JTextField("І.М. Богданов");
+        text2 = new JTextField("ТРЗВ - 17/1");
+        text3 = new JTextField("tmmkats@gmail.com");
+        text4 = new JTextField("Persik201");
         button1 = new JButton("Додати рядок");
         button2 = new JButton("Видалити рядок");
         button3 = new JButton("! ЗБЕРЕГТИ !");
@@ -157,26 +159,22 @@ public class Profile extends javax.swing.JFrame {
 
         if (curatorGroup.isEmpty() || curatorGroup.length() < 6) {
             text1.setForeground(Color.red);
-            label1.setForeground(Color.red);
-            label1.setText(status + "Увага, не вірно введені дані!");
+            serviceP.notValid(label1);
             LOGGER.info("Увага!" + evt);
         } else {
             if (group.isEmpty() || group.length() < 5) {
                 text2.setForeground(Color.red);
-                label1.setForeground(Color.red);
-                label1.setText(status + "Увага, не вірно введені дані!");
+                serviceP.notValid(label1);
                 LOGGER.info("Увага!" + evt);
             } else {
                 if (mail.isEmpty() || mail.length() < 10) {
                     text3.setForeground(Color.red);
-                    label1.setForeground(Color.red);
-                    label1.setText(status + "Увага, не вірно введені дані!");
+                    serviceP.notValid(label1);
                     LOGGER.info("Увага!" + evt);
                 } else {
                     if (passMail.isEmpty() || passMail.length() < 10) {
                         text4.setForeground(Color.red);
-                        label1.setForeground(Color.red);
-                        label1.setText(status + "Увага, не вірно введені дані!");
+                        serviceP.notValid(label1);
                         LOGGER.info("Увага!" + evt);
                     } else {
                         String nullRow;
@@ -191,8 +189,7 @@ public class Profile extends javax.swing.JFrame {
                             }
                         }
                         if (isTrueNull == true) {
-                            label1.setForeground(Color.red);
-                            label1.setText(status + "Увага, не вірно введені дані!");
+                            serviceP.notValid(label1);
                             LOGGER.info("Увага!" + evt);
                         } else {
                             try {
@@ -229,16 +226,12 @@ public class Profile extends javax.swing.JFrame {
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        int gsr = table.getSelectedRow();
-        model.insertRow(gsr + 1, new String[]{"№ п/п", "П. І. Б.", "Телефон батьків", "Пошта батьків"});
-        label1.setText(status + "Додано рядок");
+        serviceP.b1A(table, label1, model);
         LOGGER.info("Додано рядок" + evt);
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        int gsr = table.getSelectedRow();
-        model.removeRow(gsr);
-        label1.setText(status + "Видалено рядок");
+        serviceP.b2A(table, label1, model);
         LOGGER.info("Видалено рядок" + evt);
     }
 
