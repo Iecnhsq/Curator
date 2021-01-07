@@ -6,12 +6,13 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import org.apache.log4j.Logger;
+import servicem.ServiceM;
 import servicep.Profile;
 
 public class Main extends javax.swing.JFrame {
 
     private static final Logger LOGGER = Logger.getLogger(Main.class);
-    private final Service service = new Service();
+    private final ServiceM service = new ServiceM();
     private final WWTable wwt = new WWTable();
     private final WWMessage wwm = new WWMessage();
     private final Sender sender = new Sender();

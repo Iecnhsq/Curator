@@ -13,11 +13,12 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTP;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTSectPr;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTText;
+import servicem.ServiceM;
 
 public class WWMessage {
 
     private static final Logger LOGGER = Logger.getLogger(WWMessage.class);
-    private final Service service = new Service();
+    private final ServiceM service = new ServiceM();
 
     public void getWWM() throws FileNotFoundException, IOException {
         XWPFDocument docxModel = new XWPFDocument();

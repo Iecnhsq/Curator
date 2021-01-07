@@ -16,11 +16,12 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTP;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTSectPr;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTText;
+import servicem.ServiceM;
 
 public class WWTable {
 
     private static final Logger LOGGER = Logger.getLogger(WWTable.class);
-    private final Service service = new Service();
+    private final ServiceM service = new ServiceM();
 
     public void getWWT(String t1, String t2, double totalPoint, double fiveAndFour, double studentPerformance, double quality) throws FileNotFoundException, IOException {
         XWPFDocument docxModel = new XWPFDocument();
